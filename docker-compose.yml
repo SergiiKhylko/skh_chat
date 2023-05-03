@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+
+  data-base:
+    container_name: chat-mysql
+    image: mysql:8.0.33
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: skh_chat
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./.volumes/mysql-data:/var/lib/mysql
+    networks:
+      - chat-network
+
+networks:
+  chat-network:
+    driver: bridge
+
